@@ -85,3 +85,5 @@ except KeyboardInterrupt:
     logging.info("ctrl + c:")
     epd2in13_V3.epdconfig.module_exit()
     exit()
+
+# test (commit from mac)
