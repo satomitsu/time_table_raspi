@@ -108,7 +108,7 @@ try:
 #    draw.text((150, 0), tenki_today.text, font = font15, fill = 0) 
 #    draw.text((20, 40), "Temp_high:", font = font15, fill = 0)
 #    draw.text((150, 40), high_today.text, font = font15, fill = 0)  
-    draw.text((20, 20), "新宿")
+    draw.text((20, 20), "新宿", font = font15, fill = 0)
     draw.text((100, 20), dt_now.hour, font = font15, fill = 0)
     draw.text((150, 20), transit_time_min_now_1, font = font15, fill = 0)
     draw.text((200, 20), transit_time_min_now_2, font = font15, fill = 0)
