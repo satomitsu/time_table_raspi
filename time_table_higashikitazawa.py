@@ -83,7 +83,7 @@ try:
     print (transit[0])
     print (type(transit[0]))
     for i in range(len(transit)):
-        if "hour" in transit[i]:
+        if "hour" in str(transit[i]):
             print (transit[i].contents[0])
         else:
             print (transit[i].contents[1])
