@@ -36,23 +36,28 @@ try:
     logging.info("1.Drawing on the image...")
     image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
     draw = ImageDraw.Draw(image)
+    # 現在時刻の取得
+    dt_now = datetime.datetime.now()
     #アクセスするURL：Tokyoをセット
     url_shinjuku_weekday = 'https://transit.yahoo.co.jp/timetable/22929/3090?kind=1'
     url_shinjuku_weekend = 'https://transit.yahoo.co.jp/timetable/22929/3090?kind=2'
     url_tokyo_weather = 'https://weather.yahoo.co.jp/weather/jp/13/4410.html'
-    #URLにアクセスする：アクセス結果は「resp」に帰ってくる
-    resp = requests.get(url_shinjuku_weekday)
-    resp_weather = requests.get(url_tokyo_weather)
     # 今日が祝日かどうか判定する
+    # holiday = jpholiday.is_holiday(datetime.date(2023, 3, 25))
+    # print(holiday)
     if datetime.date.today().weekday() >= 5 or jpholiday.is_holiday(datetime.date.today()):
         holiday = 1
     else:
         holiday = 0
-    # holiday = jpholiday.is_holiday(datetime.date(2023, 3, 25))
-    print(holiday)
+    #URLにアクセスする：アクセス結果は「resp」に帰ってくる
+    if holiday == 1:
+        resp_transit = requests.get(url_shinjuku_weekend)
+    else:
+        resp_transit = requests.get(url_shinjuku_weekday)
+    resp_weather = requests.get(url_tokyo_weather)
     
     #「resp」らHTMLを取り出して、BeautifulSoupで扱えるようにパースする
-    soup = BeautifulSoup(resp.text, "html.parser")
+    soup_transit = BeautifulSoup(resp_transit.text, "html.parser")
     soup_weather = BeautifulSoup(resp_weather.text, "html.parser")
     #以下、CSSセレクターでHTMLからテキストを取得
     #今日の日付
@@ -65,17 +70,23 @@ try:
     low_today = soup_weather.select_one('#main > div.forecastCity > table > tr > td > div > ul > li.low')
     #明日の天気
     tenki_tomorrow = soup_weather.select_one('#main > div.forecastCity > table > tr > td + td > div > p.pict')
+    #電車時刻表示
+    transit = soup_transit.select_one('#main > div.mainWrp > div.mdStaLineDia > table.tblDiaDetail > tr.hh_7 > td > ul')
     #天気の表示
     print (today_date.text.replace('\n','')+"の天気")
     print ("今日の天気は"+tenki_today.text.replace('\n',''))
     print ("今日の最高気温は"+high_today.text)
     print ("今日の最低気温は"+low_today.text)
     print ("明日の天気は"+tenki_tomorrow.text.replace('\n','')) 
+    print (transit)
    
-    draw.text((20, 20), "Weather:", font = font15, fill = 0)
-    draw.text((150, 0), tenki_today.text, font = font15, fill = 0) 
-    draw.text((20, 40), "Temp_high:", font = font15, fill = 0)
-    draw.text((150, 40), high_today.text, font = font15, fill = 0)  
+    draw.text((10, 0), today_date, font = font15, fill = 0)
+#    draw.text((20, 20), "Weather:", font = font15, fill = 0)
+#    draw.text((150, 0), tenki_today.text, font = font15, fill = 0) 
+#    draw.text((20, 40), "Temp_high:", font = font15, fill = 0)
+#    draw.text((150, 40), high_today.text, font = font15, fill = 0)  
+    draw.text((20, 20), "新宿")
+    draw.text((100, 20), )
     # image = image.rotate(180) # rotate
     epd.display(epd.getbuffer(image))
     time.sleep(64800)
