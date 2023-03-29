@@ -98,7 +98,11 @@ try:
     # print (transit_time_min)
     print (dt_now.hour)
     print (dt_now.minute)
-   
+    dt_now_min = int(dt_now.hour)*60 + dt_now.minute
+    for j in range(len(transit_time_min)-1):
+        if dt_now_min <= transit_time_min[j]:
+            print (transit_time_min[j])
+
     draw.text((10, 0), today_date, font = font15, fill = 0)
 #    draw.text((20, 20), "Weather:", font = font15, fill = 0)
 #    draw.text((150, 0), tenki_today.text, font = font15, fill = 0) 
