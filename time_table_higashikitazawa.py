@@ -104,7 +104,7 @@ try:
             transit_time_min_now_3 = transit_time_min[j+2] % 60
             break
 
-    draw.text((10, 20), today_date.text, font = font15, fill = 0)
+    draw.text((10, 0), today_date.text, font = font15, fill = 0)
 #    draw.text((20, 20), "Weather:", font = font15, fill = 0)
 #    draw.text((150, 0), tenki_today.text, font = font15, fill = 0) 
 #    draw.text((20, 40), "Temp_high:", font = font15, fill = 0)
