@@ -8,6 +8,8 @@ picdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__)
 libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
 if os.path.exists(libdir):
     sys.path.append(libdir)
+import datetime
+import jpholiday
 
 import logging
 from waveshare_epd import epd2in13_V3
@@ -33,9 +35,14 @@ try:
     image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
     draw = ImageDraw.Draw(image)
     #アクセスするURL：Tokyoをセット
-    url = 'https://weather.yahoo.co.jp/weather/jp/13/4410.html'
+    url_shinjuku_weekday = 'https://transit.yahoo.co.jp/timetable/22929/3090?kind=1'
+    url_shinjuku_weekend = 'https://transit.yahoo.co.jp/timetable/22929/3090?kind=2'
     #URLにアクセスする：アクセス結果は「resp」に帰ってくる
     resp = requests.get(url)
+    # 今日が祝日かどうか判定する
+    holiday = jpholiday.is_holiday(datetime.date.today())
+    print(holiday)
+    
     #「resp」らHTMLを取り出して、BeautifulSoupで扱えるようにパースする
     soup = BeautifulSoup(resp.text, "html.parser")
     #以下、CSSセレクターでHTMLからテキストを取得
