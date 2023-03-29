@@ -104,16 +104,16 @@ try:
             transit_time_min_now_3 = transit_time_min[j+2] % 60
             break
 
-    draw.text((10, 0), today_date.text, font = font15, fill = 0)
+    draw.text((10, 20), today_date.text, font = font15, fill = 0)
 #    draw.text((20, 20), "Weather:", font = font15, fill = 0)
 #    draw.text((150, 0), tenki_today.text, font = font15, fill = 0) 
 #    draw.text((20, 40), "Temp_high:", font = font15, fill = 0)
-    draw.text((150, 40), high_today.text, font = font15, fill = 0)  
-    draw.text((20, 20), "新宿", font = font15, fill = 0)
-    draw.text((100, 20), str(dt_now.hour), font = font15, fill = 0)
-    draw.text((150, 20), str(transit_time_min_now_1), font = font15, fill = 0)
-    draw.text((200, 20), str(transit_time_min_now_2), font = font15, fill = 0)
-    draw.text((250, 20), str(transit_time_min_now_3), font = font15, fill = 0)
+    # draw.text((150, 40), high_today.text, font = font15, fill = 0)  
+    draw.text((20, 40), "新宿:", font = font15, fill = 0)
+    draw.text((80, 40), str(dt_now.hour), font = font15, fill = 0)
+    draw.text((110, 40), str(transit_time_min_now_1), font = font15, fill = 0)
+    draw.text((140, 40), str(transit_time_min_now_2), font = font15, fill = 0)
+    draw.text((170, 40), str(transit_time_min_now_3), font = font15, fill = 0)
     image = image.rotate(180) # rotate
     epd.display(epd.getbuffer(image))
     time.sleep(64800)
