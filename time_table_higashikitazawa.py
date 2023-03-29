@@ -99,7 +99,7 @@ try:
         if dt_now_min <= transit_time_min[j]:
             # print (transit_time_min[j])
             transit_time_min_now_1 = transit_time_min[j] % 60
-            print (transit_time_min_now_1)
+            # print (transit_time_min_now_1)
             transit_time_min_now_2 = transit_time_min[j+1] % 60
             transit_time_min_now_3 = transit_time_min[j+2] % 60
             break
