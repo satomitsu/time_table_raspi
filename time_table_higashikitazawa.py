@@ -82,14 +82,18 @@ try:
     print ("明日の天気は"+tenki_tomorrow.text.replace('\n','')) 
     print (transit[0])
     print (type(transit[0]))
+    transit_time_min = []
     for i in range(len(transit)):
         if "hour" in str(transit[i]):
-            print (transit[i].contents[0])
+            transit_time_H_min = int(transit[i].contents[0])*60
+            # print (transit[i].contents[0])
         else:
-            print (transit[i].contents[1])
+            transit_time_min.append(transit_time_H_min + int(transit[i].contents[1]))
+            # print (transit[i].contents[1])
     print (transit.contents[0])
     print (transit[0].contents[0])
     print (transit[1])
+    print (transit_time_min)
    
     draw.text((10, 0), today_date, font = font15, fill = 0)
 #    draw.text((20, 20), "Weather:", font = font15, fill = 0)
