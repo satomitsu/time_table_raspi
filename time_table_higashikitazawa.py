@@ -80,8 +80,8 @@ try:
     print ("今日の最高気温は"+high_today.text)
     print ("今日の最低気温は"+low_today.text)
     print ("明日の天気は"+tenki_tomorrow.text.replace('\n','')) 
-    print (transit[0])
-    print (transit[1])
+    print (transit[0].text)
+    print (transit[1].text)
    
     draw.text((10, 0), today_date, font = font15, fill = 0)
 #    draw.text((20, 20), "Weather:", font = font15, fill = 0)
