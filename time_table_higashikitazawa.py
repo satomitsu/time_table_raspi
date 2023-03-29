@@ -81,7 +81,7 @@ try:
     print ("今日の最低気温は"+low_today.text)
     print ("明日の天気は"+tenki_tomorrow.text.replace('\n','')) 
     print (len(transit))
-    for i in len(transit):
+    for i in range(len(transit)):
         print (transit[i].contents[0])
     print (transit.contents[0])
     print (transit[0].contents[0])
