@@ -76,7 +76,7 @@ try:
     print (today_date.text.replace('\n','')+"の天気")
     print ("今日の天気は"+tenki_today.text.replace('\n',''))
     print ("今日の最高気温は"+high_today.text)
-    print ("今日の最低気温は"+low_today.text)
+    print ("今日の最低気温は"+low_today)
     print ("明日の天気は"+tenki_tomorrow.text.replace('\n','')) 
     print (transit)
    
