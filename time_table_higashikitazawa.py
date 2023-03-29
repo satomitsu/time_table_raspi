@@ -87,17 +87,17 @@ try:
         if "hour" in str(transit[i]):
             if int(transit[i].contents[0]) == 0:
                 transit_time_H_min = 24*60
-                print (transit_time_H_min)
+                # print (transit_time_H_min)
             else:
                 transit_time_H_min = int(transit[i].contents[0])*60
-                print (transit_time_H_min)
+                # print (transit_time_H_min)
             # print (transit[i].contents[0])            
         else:
             transit_time_min.append(transit_time_H_min + int(transit[i].contents[1]))
             # print (transit[i].contents[1])
-    print (transit[0].contents[0])
-    print (transit[1])
-    print (transit_time_min)
+    # print (transit_time_min)
+    print (dt_now.hour)
+    print (dt_now.minute)
    
     draw.text((10, 0), today_date, font = font15, fill = 0)
 #    draw.text((20, 20), "Weather:", font = font15, fill = 0)
