@@ -95,7 +95,6 @@ try:
         else:
             transit_time_min.append(transit_time_H_min + int(transit[i].contents[1]))
             # print (transit[i].contents[1])
-    print (transit.contents[0])
     print (transit[0].contents[0])
     print (transit[1])
     print (transit_time_min)
