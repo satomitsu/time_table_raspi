@@ -71,7 +71,7 @@ try:
     #明日の天気
     tenki_tomorrow = soup_weather.select_one('#main > div.forecastCity > table > tr > td + td > div > p.pict')
     #電車時刻表示
-    transit = soup_transit.select('#main > div.mdStaLineDia > div.elmLineDia > table.tblDiaDetail > tr', string=lambda text: "python" in text.lower())
+    transit = soup_transit.select('#main > div.mdStaLineDia > div.elmLineDia > table.tblDiaDetail > tr')
     #天気の表示
     print (today_date.text.replace('\n','')+"の天気")
     print ("今日の天気は"+tenki_today.text.replace('\n',''))
