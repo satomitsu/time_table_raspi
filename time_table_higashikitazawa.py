@@ -37,25 +37,28 @@ try:
     #アクセスするURL：Tokyoをセット
     url_shinjuku_weekday = 'https://transit.yahoo.co.jp/timetable/22929/3090?kind=1'
     url_shinjuku_weekend = 'https://transit.yahoo.co.jp/timetable/22929/3090?kind=2'
+    url_tokyo_weather = 'https://weather.yahoo.co.jp/weather/jp/13/4410.html'
     #URLにアクセスする：アクセス結果は「resp」に帰ってくる
     resp = requests.get(url_shinjuku_weekday)
+    resp_weather = requests.get(url_tokyo_weather)
     # 今日が祝日かどうか判定する
     holiday = jpholiday.is_holiday(datetime.date.today())
     print(holiday)
     
     #「resp」らHTMLを取り出して、BeautifulSoupで扱えるようにパースする
     soup = BeautifulSoup(resp.text, "html.parser")
+    soup_weather = BeautifulSoup(resp_weather.text, "html.parser")
     #以下、CSSセレクターでHTMLからテキストを取得
     #今日の日付
-    today_date = soup.select_one('#main > div.forecastCity > table > tr > td > div > p.date')
+    today_date = soup_weather.select_one('#main > div.forecastCity > table > tr > td > div > p.date')
     #今日の天気
-    tenki_today = soup.select_one('#main > div.forecastCity > table > tr > td > div > p.pict')
+    tenki_today = soup_weather.select_one('#main > div.forecastCity > table > tr > td > div > p.pict')
     #今日の最高気温
-    high_today = soup.select_one('#main > div.forecastCity > table > tr > td > div > ul > li.high')
+    high_today = soup_weather.select_one('#main > div.forecastCity > table > tr > td > div > ul > li.high')
     #今日の最低気温
-    low_today = soup.select_one('#main > div.forecastCity > table > tr > td > div > ul > li.low')
+    low_today = soup_weather.select_one('#main > div.forecastCity > table > tr > td > div > ul > li.low')
     #明日の天気
-    tenki_tomorrow = soup.select_one('#main > div.forecastCity > table > tr > td + td > div > p.pict')
+    tenki_tomorrow = soup_weather.select_one('#main > div.forecastCity > table > tr > td + td > div > p.pict')
     #天気の表示
     print (today_date.text.replace('\n','')+"の天気")
     print ("今日の天気は"+tenki_today.text.replace('\n',''))
