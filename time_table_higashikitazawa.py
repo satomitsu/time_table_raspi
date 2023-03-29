@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 import sys
 import requests
+import re
 from bs4 import BeautifulSoup
 import os
 picdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'pic')
@@ -71,14 +72,14 @@ try:
     #明日の天気
     tenki_tomorrow = soup_weather.select_one('#main > div.forecastCity > table > tr > td + td > div > p.pict')
     #電車時刻表示
-    transit = soup_transit.select('#mdStaLineDia > div.elmLineDia > table.tblDiaDetail > td > dt')
+    transit = soup_transit.find_all(href=re.compile("/timetable/22929/3090"))
     #天気の表示
     print (today_date.text.replace('\n','')+"の天気")
     print ("今日の天気は"+tenki_today.text.replace('\n',''))
     print ("今日の最高気温は"+high_today.text)
     print ("今日の最低気温は"+low_today.text)
     print ("明日の天気は"+tenki_tomorrow.text.replace('\n','')) 
-    print (len(transit))
+    print (transit)
    
     draw.text((10, 0), today_date, font = font15, fill = 0)
 #    draw.text((20, 20), "Weather:", font = font15, fill = 0)
