@@ -86,9 +86,10 @@ try:
     for i in range(len(transit)):
         if "hour" in str(transit[i]):
             transit_time_H_min = int(transit[i].contents[0])*60
+            print (transit_time_H_min)
             # print (transit[i].contents[0])
         else:
-            transit_time_min.append(transit_time_H_min + int(transit[i].contents[1]))
+            transit_time_min.append(transit_time_H_min + transit[i].contents[1])
             # print (transit[i].contents[1])
     print (transit.contents[0])
     print (transit[0].contents[0])
