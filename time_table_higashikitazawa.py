@@ -38,7 +38,7 @@ try:
     url_shinjuku_weekday = 'https://transit.yahoo.co.jp/timetable/22929/3090?kind=1'
     url_shinjuku_weekend = 'https://transit.yahoo.co.jp/timetable/22929/3090?kind=2'
     #URLにアクセスする：アクセス結果は「resp」に帰ってくる
-    resp = requests.get(url)
+    resp = requests.get(url_shinjuku_weekday)
     # 今日が祝日かどうか判定する
     holiday = jpholiday.is_holiday(datetime.date.today())
     print(holiday)
