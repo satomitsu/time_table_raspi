@@ -80,8 +80,6 @@ try:
     print ("今日の最高気温は"+high_today.text)
     print ("今日の最低気温は"+low_today.text)
     print ("明日の天気は"+tenki_tomorrow.text.replace('\n','')) 
-    print (transit[0])
-    print (type(transit[0]))
     transit_time_min = []
     for i in range(len(transit)-1):
         if "hour" in str(transit[i]):
@@ -96,14 +94,13 @@ try:
             transit_time_min.append(transit_time_H_min + int(transit[i].contents[1]))
             # print (transit[i].contents[1])
     # print (transit_time_min)
-    print (dt_now.hour)
-    print (dt_now.minute)
     dt_now_min = int(dt_now.hour)*60 + dt_now.minute
     for j in range(len(transit_time_min)-3):
         if dt_now_min <= transit_time_min[j]:
-            print (transit_time_min[j])
-            print (transit_time_min[j+1])
-            print (transit_time_min[j+2])
+            # print (transit_time_min[j])
+            transit_time_min_now_1 = transit_time_min[j] % 60
+            transit_time_min_now_2 = transit_time_min[j+1] % 60
+            transit_time_min_now_3 = transit_time_min[j+2] % 60
             break
 
     draw.text((10, 0), today_date, font = font15, fill = 0)
@@ -112,7 +109,10 @@ try:
 #    draw.text((20, 40), "Temp_high:", font = font15, fill = 0)
 #    draw.text((150, 40), high_today.text, font = font15, fill = 0)  
     draw.text((20, 20), "新宿")
-    draw.text((100, 20), )
+    draw.text((100, 20), dt_now.hour, font = font15, fill = 0)
+    draw.text((150, 20), transit_time_min_now_1, font = font15, fill = 0)
+    draw.text((200, 20), transit_time_min_now_2, font = font15, fill = 0)
+    draw.text((250, 20), transit_time_min_now_2, font = font15, fill = 0)
     # image = image.rotate(180) # rotate
     epd.display(epd.getbuffer(image))
     time.sleep(64800)
