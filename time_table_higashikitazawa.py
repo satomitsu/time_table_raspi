@@ -44,7 +44,7 @@ try:
     resp = requests.get(url_shinjuku_weekday)
     resp_weather = requests.get(url_tokyo_weather)
     # 今日が祝日かどうか判定する
-    if datetime.today().weekday() >= 5 or jpholiday.is_holiday(datetime.date.today()):
+    if datetime.date.today().weekday() >= 5 or jpholiday.is_holiday(datetime.date.today()):
         holiday = 1
     else:
         holiday = 0
