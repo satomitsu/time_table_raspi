@@ -114,7 +114,7 @@ try:
     draw.text((150, 20), str(transit_time_min_now_1), font = font15, fill = 0)
     draw.text((200, 20), str(transit_time_min_now_2), font = font15, fill = 0)
     draw.text((250, 20), str(transit_time_min_now_3), font = font15, fill = 0)
-    # image = image.rotate(180) # rotate
+    image = image.rotate(180) # rotate
     epd.display(epd.getbuffer(image))
     time.sleep(64800)
     
