@@ -83,14 +83,17 @@ try:
     print (transit[0])
     print (type(transit[0]))
     transit_time_min = []
-    for i in range(len(transit)):
+    for i in range(len(transit)-1):
         if "hour" in str(transit[i]):
-            transit_time_H_min = int(transit[i].contents[0])*60
-            print (transit_time_H_min)
-            # print (transit[i].contents[0])
+            if transit[i].contents[0] == 0:
+                transit_time_H_min = 24*60
+                print (transit_time_H_min)
+            else:
+                transit_time_H_min = int(transit[i].contents[0])*60
+                print (transit_time_H_min)
+            # print (transit[i].contents[0])            
         else:
-            x = transit_time_H_min + int(transit[i].contents[1])
-            transit_time_min.append(x)
+            transit_time_min.append(transit_time_H_min + int(transit[i].contents[1]))
             # print (transit[i].contents[1])
     print (transit.contents[0])
     print (transit[0].contents[0])
